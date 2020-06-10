@@ -24,7 +24,8 @@ String comFunc(str) {
 
 /*
 * Isolate 多线程
-*   ReceivePort如果使用到变量，变量是进行深拷贝的值拷贝.内部修改值并不会影响外部变量本身
+* Isolate 看起来更加像进程.因为有独立的内存空间!
+* ReceivePort如果使用到变量，变量是进行深拷贝的值拷贝.内部修改值并不会影响外部变量本身,不用担心多线程的资源抢夺问题!不需要锁!
 * */
 Future<void> IsolateTest() async {
   //创建Port
@@ -148,6 +149,7 @@ void FutureThenOrder() {
 * 1，FutureOr<T>表示可以返回一个Future对象或者是<T>实例
 * 2，catchError在then前时，无法阻止then的执行,因为当前then实际上是在捕获catcherror这个Future
 * 3, catchError的闭包返回值是依附上一层的<T>,如果上一层没有返回值，catcherror中的返回值需要单声明变量后使用
+* 4, 超时
 * */
 Future<void> throwError() async {
   print('进入');
@@ -158,13 +160,17 @@ Future<void> throwError() async {
     sleep(Duration(seconds: 1));
 //    return '异步完成';
     throw Exception('出错了');
-  }).then((val) {
-    print('第一次then:${val}');
-    return '第一次then结束';
-  }).catchError((e) {
-    print('errpr:${e}');
-    return '错误处理'; //3
-  }).then((e) => print(e)); //2
+  })
+      .then((val) {
+        print('第一次then:${val}');
+        return '第一次then结束';
+      })
+      .catchError((e) {
+        print('errpr:${e}');
+        return '错误处理'; //3
+      })
+      .then((e) => print(e)) //2
+      .timeout(Duration(seconds: 1)); //4
   print('结束');
 }
 
