@@ -1,8 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:wechat/global.dart';
+import 'package:wechat/tools/global.dart';
+import 'package:wechat/tools/http_manage.dart';
 
 import '../../gestTap_cell.dart';
 import 'chat_cell.dart';
@@ -44,33 +42,22 @@ class _ChatPageState extends State<ChatPage> {
   @override
   void initState() {
     super.initState();
-    getDataList()
+
+    /*获取数据*/
+    httpManage
+        .request('http://arap2.taobao.org:38080/app/mock/257078/api/chat/list',
+            timeOut: 500)
         .then((data) {
+          print(data);
+          final List<ChatModel> result = data['chatList']
+              .map<ChatModel>((item) => ChatModel.decode(item))
+              .toList();
           setState(() {
-            _dataSource = data;
+            _dataSource = result;
           });
         })
-        .whenComplete(() => print('finish'))
         .catchError((e) => {print('错误：${e}')})
-//        .timeout(Duration(seconds: 5))
-        .catchError((e) => {print('超时${e}')});
-  }
-
-  /*获取数据*/
-  Future<List<ChatModel>> getDataList() async {
-    final res = await http
-        .get('http://rap2.taobao.org:38080/app/mock/257078/api/chat/list');
-    if (res.statusCode == 200) {
-      final List<ChatModel> result = json
-          .decode(res.body)['chatList']
-          .map<ChatModel>((item) => ChatModel.decode(item))
-          .toList();
-      print('正在加载${result.length}');
-      return result;
-    } else {
-      Exception(
-          'statusCode:${res.statusCode} \n content:${json.decode(res.body)}');
-    }
+        .whenComplete(() => print('finish'));
   }
 
   @override

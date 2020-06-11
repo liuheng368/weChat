@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wechat/global.dart';
+import 'package:wechat/tools/global.dart';
 
 class CellSpilt extends StatelessWidget {
   final Color color;

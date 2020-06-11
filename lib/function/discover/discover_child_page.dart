@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wechat/global.dart';
+import 'package:wechat/tools/global.dart';
 
 class DiscoverChildPage extends StatelessWidget {
   final String title;

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../global.dart';
+import '../../tools/global.dart';
 import 'friends_data.dart';
 
 class IndexBar extends StatefulWidget {

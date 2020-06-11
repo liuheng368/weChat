@@ -3,7 +3,7 @@ import 'package:wechat/function/cell_spilt_widget.dart';
 import 'package:wechat/function/discover/discover_child_page.dart';
 import 'package:wechat/gestTap_cell.dart';
 
-import '../../global.dart';
+import '../../tools/global.dart';
 
 class FriendCell extends StatelessWidget {
   final String imageUrl;

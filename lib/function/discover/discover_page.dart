@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wechat/function/discover/discover_cell.dart';
 import 'package:wechat/function/discover/discover_model.dart';
-import 'package:wechat/global.dart';
+import 'package:wechat/tools/global.dart';
 
 import '../cell_spilt_widget.dart';
 

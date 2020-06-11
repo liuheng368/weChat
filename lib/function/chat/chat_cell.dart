@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wechat/function/chat/chat_model.dart';
 
-import '../../global.dart';
+import '../../tools/global.dart';
 
 class ChatCell extends StatelessWidget {
   final ChatModel cellData;

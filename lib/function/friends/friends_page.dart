@@ -3,7 +3,7 @@ import 'package:wechat/function/discover/discover_child_page.dart';
 import 'package:wechat/function/friends/friend_cell.dart';
 import 'package:wechat/function/friends/friends_data.dart';
 import 'package:wechat/function/friends/index_bar.dart';
-import 'package:wechat/global.dart';
+import 'package:wechat/tools/global.dart';
 
 class FriendsPage extends StatefulWidget {
   @override

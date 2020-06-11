@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wechat/function/cell_spilt_widget.dart';
 import 'package:wechat/function/discover/discover_cell.dart';
-import 'package:wechat/global.dart';
+import 'package:wechat/tools/global.dart';
 
 class MinePage extends StatelessWidget {
   @override
