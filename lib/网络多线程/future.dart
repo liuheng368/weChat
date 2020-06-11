@@ -6,7 +6,39 @@ import 'package:flutter/foundation.dart';
 
 void main() {
   print('开始');
-  computeTest();
+  combinText();
+}
+
+/*
+*   1,需要注意返回值，=>是return的简写，所以1、2、3的then是compute的后续，所以是在多线程中执行，无序的。
+*   2,Future和自己的then是一体的，必定会同步执行，而scheduleMicrotask则是后续添加的所以最后执行
+*
+* */
+void combinText() {
+  Future(() => compute(comFunc, '1')).then((val) => print(val)); //1
+  Future(() => compute(comFunc, '2')).then((val) => print(val));
+  Future(() => compute(comFunc, '3')).then((val) => print(val));
+
+  Future(() {
+    compute(comFunc, '4');
+    return '4处理';
+  }).then((val) => print(val));
+  Future(() {
+    compute(comFunc, '5');
+    return '5处理';
+  }).then((val) => print(val));
+  Future(() {
+    compute(comFunc, '6');
+    return '6处理';
+  }).then((val) => print(val));
+
+  Future(() {
+    compute(comFunc, '7');
+    scheduleMicrotask(() {
+      print('8处理'); //2
+    });
+    return '7处理';
+  }).then((val) => print(val));
 }
 
 /*

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:wechat/function/%20chat/chat_page.dart';
+import 'package:wechat/function/chat/chat_page.dart';
 import 'package:wechat/function/discover/discover_page.dart';
 import 'package:wechat/function/friends/friends_page.dart';
 import 'package:wechat/function/mine_page.dart';
