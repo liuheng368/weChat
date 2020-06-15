@@ -10,7 +10,8 @@ class FriendsPage extends StatefulWidget {
   _FriendsPageState createState() => _FriendsPageState();
 }
 
-class _FriendsPageState extends State<FriendsPage> {
+class _FriendsPageState extends State<FriendsPage>
+    with AutomaticKeepAliveClientMixin {
   final List<FriendsModel> _listDatas = [];
   final _scrollerController = ScrollController();
 
@@ -61,6 +62,7 @@ class _FriendsPageState extends State<FriendsPage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: ThemeColor,
       appBar: AppBar(
@@ -108,4 +110,8 @@ class _FriendsPageState extends State<FriendsPage> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

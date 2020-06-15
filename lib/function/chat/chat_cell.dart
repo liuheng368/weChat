@@ -26,14 +26,14 @@ class ChatCell extends StatelessWidget {
           ), //头像
           Container(
             margin: EdgeInsets.only(top: 15, bottom: 15),
-            width: ScreenWidth(context) - 104,
+            width: ScreenWidth(context) - 90,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
                   cellData.name,
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 15),
                 ),
                 Container(
                   alignment: Alignment.bottomCenter,

@@ -11,17 +11,33 @@ class RootViewController extends StatefulWidget {
 
 class _RootPageState extends State<RootViewController> {
   int currentIndex = 0;
-  final List _pageList = [
+  final List<Widget> _pageList = [
     ChatPage(),
     FriendsPage(),
     DiscoverPage(),
     MinePage()
   ];
+  PageController _controller = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pageList[currentIndex],
+      //使用IndexedStack可以让所有vc同时加入渲染树，防止切换时重新创建（init），导致状态保持失效
+      body: IndexedStack(
+        index: currentIndex,
+        children: _pageList,
+      ),
+      //PageView(
+      //        controller: _controller,
+      ////        physics: NeverScrollableScrollPhysics(),禁止滑动
+      //        onPageChanged: (index) {
+      //          setState(() {
+      //            currentIndex = index;
+      //          });
+      //        },
+      //        children: _pageList,
+      //      )
+      //          _controller.jumpToPage(index);
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {

@@ -4,6 +4,20 @@ import 'package:wechat/root_view_controller.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+//  aff() {
+//    String str = 'hahahahhah';
+//    List<String> list = str.split('h');
+//    String result = '';
+//    for (int i = 0; i < list.length; i++) {
+//      print(list[i]);
+//      result += list[i];
+//      if (i != list.length - 1) {
+//        result += 'h';
+//      }
+//    }
+//    print(result);
+//  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

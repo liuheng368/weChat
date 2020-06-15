@@ -17,7 +17,9 @@ class MinePage extends StatelessWidget {
                 color: ThemeColor,
                 child: ListView(
                   children: <Widget>[
+                    //自动计算高度
                     Card(
+//                    Container(
                       color: Colors.white,
 //                      height: 180,
                       child: Row(
