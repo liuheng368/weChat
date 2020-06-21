@@ -1,9 +1,39 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:wechat/function/cell_spilt_widget.dart';
 import 'package:wechat/function/discover/discover_cell.dart';
 import 'package:wechat/tools/global.dart';
 
-class MinePage extends StatelessWidget {
+class MinePage extends StatefulWidget {
+  @override
+  _MinePageState createState() => _MinePageState();
+}
+
+class _MinePageState extends State<MinePage> {
+  File _avatarFile;
+
+  //通过mine_page来注册一个通讯渠道
+  MethodChannel _channel = MethodChannel('mine_page');
+
+  @override
+  void initState() {
+    super.initState();
+
+    //注册该通讯渠道的回调
+    _channel.setMethodCallHandler((call) {
+      if (call.method == 'get_picture') {
+        setState(() {
+          _avatarFile = File(call.arguments.toString().substring(7));
+          print(_avatarFile);
+        });
+        _channel.invokeMethod('vc-disminss');
+      }
+      return Future(() => 'flutter-setMethodCallHandler');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +62,9 @@ class MinePage extends StatelessWidget {
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(12.0),
                               image: DecorationImage(
-                                image: AssetImage('images/Hank.png'),
+                                image: _avatarFile != null
+                                    ? FileImage(_avatarFile)
+                                    : AssetImage('images/Hank.png'),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -79,7 +111,10 @@ class MinePage extends StatelessWidget {
               ), //Listview
               GestureDetector(
                 onTap: () {
-                  print('照相');
+                  //通过通讯渠道主动发送方法
+                  _channel
+                      .invokeMethod('open_picture')
+                      .then((val) => print('open_picture' + val));
                 },
                 child: Container(
                   height: 25,

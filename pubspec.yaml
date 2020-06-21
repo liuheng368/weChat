@@ -32,6 +32,9 @@ dependencies:
   # dio: ^3.0.9 大版本不变的区间写法 相当于 '>=3.0.9 < 4.0.0'(常用)
   dio: ^3.0.9
 
+  image_picker: ^0.6.7+2
+
+
   cupertino_icons: ^0.1.2
 
 # 仅仅在开发调试的时候用.

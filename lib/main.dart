@@ -4,6 +4,9 @@ import 'package:wechat/root_view_controller.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  MyApp() {
+    print('构造函数');
+  }
 //  aff() {
 //    String str = 'hahahahhah';
 //    List<String> list = str.split('h');
@@ -20,6 +23,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('build');
     return MaterialApp(
       title: '微信Demo',
       theme: ThemeData(
