@@ -16,6 +16,8 @@ class _MinePageState extends State<MinePage> {
 
   //通过mine_page来注册一个通讯渠道
   //通过注册回调:setMethodCallHandler 主动发消息:invokeMethod来完成通讯
+  //原生功能在iOS项目
+
   MethodChannel _channel = MethodChannel('mine_page');
 
   @override
